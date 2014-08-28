@@ -6,6 +6,7 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprite>sprites\intruderstxt_spr</sprite>
     <sprites name="main menu">
       <sprite>sprites\continue_spr</sprite>
       <sprite>sprites\highscores_spr</sprite>
@@ -17,9 +18,15 @@
       <sprite>sprites\earthchoice_spr</sprite>
       <sprite>sprites\airchoice_spr</sprite>
     </sprites>
-    <sprite>sprites\hero_spr</sprite>
     <sprite>sprites\spider_spr</sprite>
     <sprite>sprites\wall_spr</sprite>
+    <sprites name="hero">
+      <sprite>sprites\hero_spr</sprite>
+      <sprite>sprites\fire_spr</sprite>
+      <sprite>sprites\water_spr</sprite>
+      <sprite>sprites\air_spr</sprite>
+      <sprite>sprites\earth_spr</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\test_bg</background>
@@ -32,12 +39,15 @@
     <font>fonts\scoreshadow_fnt</font>
   </fonts>
   <objects name="objects">
+    <object>objects\intruders_obj</object>
+    <object>objects\spawn_obj</object>
     <object>objects\controller_obj</object>
     <objects name="choice">
       <object>objects\airchoice_obj</object>
       <object>objects\earthchoice_obj</object>
       <object>objects\waterchoice_obj</object>
       <object>objects\firechoice_obj</object>
+      <object>objects\choice_obj</object>
     </objects>
     <objects name="main menu">
       <object>objects\highscores_obj</object>
@@ -47,7 +57,11 @@
     <object>objects\hero_obj</object>
     <object>objects\spider_obj</object>
     <object>objects\wall_obj</object>
+    <object>objects\missile_obj</object>
   </objects>
+  <timelines name="timelines">
+    <timeline>timelines\timeline0</timeline>
+  </timelines>
   <rooms name="rooms">
     <room>rooms\title_rm</room>
     <room>rooms\choice_rm</room>
@@ -55,7 +69,7 @@
     <room>rooms\level1_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41877.8481157176</constant>
+    <constant name="GM_build_date">41879.7757178356</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

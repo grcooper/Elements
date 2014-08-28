@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar spawnRate;
-spawnRate = 0;
+            <string>globalvar spawnreload;
+spawnreload = 10;
 </string>
           </argument>
         </arguments>
@@ -49,12 +49,14 @@ spawnRate = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (spawnRate &gt;= 20)
+            <string>spawnreload--;
+
+if (spawnreload == 0)
 {
-    instance_create(irandom(448) + 16, y, bug_obj);
-    spawnRate = 0;
+    randspawn = irandom_range(48,room_width-48);
+    instance_create(randspawn, -32, spider_obj); 
+    spawnreload = 10;        
 }
-spawnRate += 1;
 </string>
           </argument>
         </arguments>

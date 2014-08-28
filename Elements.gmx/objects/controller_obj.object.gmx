@@ -33,6 +33,10 @@ instance_create(240,room_height-57,hero_obj);
 
 //spawn wall
 instance_create(0, room_height-75, wall_obj);
+
+//Spawn intruders are coming sign
+instance_create(room_width/2, room_height/2, intruders_obj);
+
 </string>
           </argument>
         </arguments>
@@ -56,25 +60,25 @@ instance_create(0, room_height-75, wall_obj);
           <argument>
             <kind>1</kind>
             <string>
-//Left side healthbar
+//Left side health bar
 draw_healthbar(0,0,32,room_height,100,c_black,c_green,c_red,3,true,true);
 
-//Lower health bar
-draw_healthbar(32,room_height-32,room_width,room_height,100,c_black,c_green,c_red,0,true,true);
+//Right Side health bar
+draw_healthbar(room_width-32,0,room_width,room_height,100,c_black,c_green,c_red,3,true,true);
 
 //Setting score so we can test score text
-//score = 12;
+score = 1234567890;
 
 //Shadow of score, may need to change
 draw_set_color(c_black);
 draw_set_font(scoreshadow_fnt);
-draw_text(room_width-100,0,string(score));
+draw_set_halign(fa_center);
+draw_text(room_width/2,room_height - 32,string(score));
 
 //Score text
 draw_set_color(c_white);
 draw_set_font(score_fnt);
-draw_set_halign(fa_center);
-draw_text(room_width-100,0,string(score));
+draw_text(room_width/2,room_height - 32,string(score));
 
 
 
