@@ -30,6 +30,9 @@ eSpeed = 0;
 eHealth = 1;
 points = 0;
 boss = false;
+eFire = false;
+eStartReload = 20;
+eReload = eStartReload;
 
 //change stats depending on spawn type
 if (spawnType = "spider")
@@ -38,6 +41,7 @@ if (spawnType = "spider")
     eHealth = round(1 + (curLevel/5));
     eSpeed = 5;
     points = 10 + (curLevel * 2);
+    eFire = false;
 }
 else if (spawnType = "wizard")
 {
@@ -45,14 +49,24 @@ else if (spawnType = "wizard")
     eHealth = round(2 + (curLevel/5));
     eSpeed = 3;
     points = 15 + (curLevel * 2);
+    eFire = false;
 }
-else if(spawnType = "boss")
+else if (spawnType = "bat")
+{
+    sprite_index = bat_spr;
+    eHealth = 1;
+    eSpeed = 5;
+    points = 15 + (curLevel * 2);
+    eFire = true;
+}
+else if (spawnType = "boss")
 {
     sprite_index = boss_spr;
     eHealth = round(5 + (curLevel/5));
     points = 30 + (curLevel * 15);
     eSpeed = 3;
     boss = true;
+    eFire = true;
 }
 else
 {
@@ -98,13 +112,13 @@ eMeleeReload = eMeleeReloadStart;
 if (instance_position(x, y + 16, wall_obj))
 {
     vspeed = 0;
-
+    eFire = false;
     eMeleeReload --;
     if (eMeleeReload = 0)
     {
         wallHealth -= 10;
         eMeleeReload = eMeleeReloadStart;
-    }
+    } 
 }
 else if (!paused)
 {
@@ -113,6 +127,19 @@ else if (!paused)
 else
 {
     vspeed = 0;
+}
+
+if (eFire)
+{
+    if(eReload &lt;= 0)
+    {
+        instance_create(x,y,monsterMissile_obj);
+        eReload = eStartReload;
+    }
+    else
+    {
+        eReload--;
+    }   
 }
 
 if(gameOver)

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>reload = 0;
+            <string>globalvar mStartReload;
+mStartReload = 10;
+globalvar mReload;
+mReload = mStartReload;
+
 health = 100;
 </string>
           </argument>
@@ -70,15 +74,15 @@ health = 100;
             //Fire missiles
             
             //Reload timer
-            if(reload &gt; 0)
+            if(mReload &gt; 0)
             {
-                reload--;
+                mReload--;
             }
             
-            if((keyboard_check(ord('W')) || mouse_check_button(mb_left)) &amp;&amp; (reload == 0))
+            if((keyboard_check(ord('W')) || mouse_check_button(mb_left)) &amp;&amp; (mReload == 0))
             {
                 instance_create(x,y-16,missile_obj);
-                reload = 10;
+                mReload = mStartReload;
                 mFired += 1;
             }
         }

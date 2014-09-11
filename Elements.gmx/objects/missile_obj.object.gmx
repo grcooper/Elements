@@ -28,23 +28,31 @@
             <string>if(element1 == "fire")
 {
     sprite_index = fire_spr;
+    mStartReload = 10;
+    mDamage = 1;
+    mSpeed = -15;
 }
 else if(element1 == "water")
 {
     sprite_index = water_spr;
+    mStartReload = 10;
+    mDamage = 1;
+    mSpeed = -15;
 }
 else if(element1 == "earth")
 {
     sprite_index = earth_spr;
+    mStartReload = 15;
+    mDamage = 2;
+    mSpeed = -10;
 }
 else 
 {
     sprite_index = air_spr;
+    mStartReload = 5;
+    mDamage = 0.5
+    mSpeed = -15;
 }
-
-//Set these inside of the if statements above depending on element, damage and speed changes
-mDamage = 1;
-mSpeed = -20;
 
 //Temp variables to get the x and y direction of the mouse relative to the player (missile's starting position)
 var xTemp;

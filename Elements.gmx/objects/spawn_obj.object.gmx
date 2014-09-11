@@ -67,14 +67,18 @@ globalvar spawnType;
         if(spawnType != "boss")
         {
             var rand;
-            rand = irandom(100);
-            if (rand &gt; 49)
+            rand = min(irandom(50 + (curLevel * 25)), 150);
+            if (rand &lt;= 49)
             {
                 spawnType = "spider";
             }
-            else
+            else if ((rand &gt; 49) &amp;&amp; (rand &lt;= 100))
             {
                 spawnType = "wizard";
+            }
+            else if (rand &gt; 100)
+            {
+                spawnType = "bat";
             }
             randSpawn = irandom_range(48,room_width-48);
             instance_create(randSpawn, -32, enemy_obj); 

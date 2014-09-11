@@ -39,6 +39,8 @@
       <sprite>sprites\spider_spr</sprite>
       <sprite>sprites\wizard_spr</sprite>
       <sprite>sprites\boss_spr</sprite>
+      <sprite>sprites\bat_spr</sprite>
+      <sprite>sprites\monsterMissile_spr</sprite>
     </sprites>
     <sprites name="game Over">
       <sprite>sprites\gameOver_spr</sprite>
@@ -58,6 +60,7 @@
   </fonts>
   <objects name="objects">
     <object>objects\enemy_obj</object>
+    <object>objects\monsterMissile_obj</object>
     <object>objects\wall_obj</object>
     <object>objects\missile_obj</object>
     <object>objects\hero_obj</object>
@@ -102,7 +105,7 @@
     <room>rooms\score_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41893.6206139236</constant>
+    <constant name="GM_build_date">41893.6671454398</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

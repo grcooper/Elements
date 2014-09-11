@@ -49,7 +49,7 @@ wallHealth = 100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wallHealth == 0 || winCond == true)
+            <string>if (wallHealth == 0 || gameOver == true)
 {
     instance_destroy();
 }
