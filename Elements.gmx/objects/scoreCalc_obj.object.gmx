@@ -25,16 +25,72 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spawnReloadStart = max((50 - (curLevel * 2)), 15);
+            <string>//Spawn Continue Button if we won
+if (winCond)
+{
+    instance_create(room_width/2, 500, saveCont_obj);
+}
 
-spawnReload = spawnReloadStart;
-globalvar spawnType;
+//Load the back to menu button
+instance_create(room_width/2, 600, bsMenu_obj);
+
+//Score for Monsters killed
+globalvar eKilledScore;
+eKilledScore = score;
+
+//Accuracy Score
+globalvar aScore;
+
+//Divide by zero case
+if (mFired != 0)
+{
+    aScore = round((mHit / mFired) * 100);
+}
+else
+{
+    aScore = 0;
+}
+
+//Wall health score
+globalvar wallScore;
+wallScore = wallHealth
+
+//Wizard Health Score
+globalvar healthScore;
+healthScore = health;
+
+//Used to keep prev score for display purposes
+ps = prevTotalScore;
+
+//TotalScore
+globalvar totalScore;
+totalScore = aScore + eKilledScore + wallScore + healthScore + prevTotalScore;
+
+//Set the new previous score to the current total score
+prevTotalScore = totalScore;
+
+//Reset Everything
+health = 100;
+score = 0;
+wallHealth = 100;
+mFired = 0;
+mHit = 0;
+
+//Use a variable to count up the scores dramatically
+mk = 0;
+as = 0;
+ws = 0;
+hs = 0;
+ts = 0;
+
+//Increase the current level on score screen
+curLevel += 1;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -51,43 +107,46 @@ globalvar spawnType;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!paused)
-{
-    if (eDead &gt;= eGoal)
-    {
-        spawnType = "boss";
-    }
-    else
-    {
-        spawnType = "";
-    }
-    spawnReload--;
-    if (spawnReload == 0)
-    {
-        if(spawnType != "boss")
-        {
-            var rand;
-            rand = irandom(100);
-            if (rand &gt; 49)
-            {
-                spawnType = "spider";
-            }
-            else
-            {
-                spawnType = "wizard";
-            }
-            randSpawn = irandom_range(48,room_width-48);
-            instance_create(randSpawn, -32, enemy_obj); 
-            spawnReload = irandom_range(spawnReloadStart, spawnReloadStart - 5); 
-        }
-        else
-        {
-            spawnReload = -1;
-            instance_create(room_width/2, -32, enemy_obj);
-        }       
-    }
-    
+            <string>//Draw Title
+draw_set_color(c_black);
+draw_set_font(title_fnt);
+draw_set_halign(fa_center);
+draw_text(room_width/2, 150, "Level " + string(curLevel) + " Score");
+
+
+draw_set_font(scoreshadow_fnt);
+
+//Monsters Killed Score
+if(mk &lt; eKilledScore)
+{  
+    mk += 1;
 }
+    draw_text(room_width/2, 250, "Monsters Killed: " + string(mk));  
+
+//accuracy score
+if(as &lt; aScore &amp;&amp; mk &gt;= eKilledScore)
+{ 
+    as += 1;
+}
+draw_text(room_width/2, 280, "Accuracy: " + string(as));
+
+//Wall Health Score
+if(ws &lt; wallScore &amp;&amp; as &gt;= aScore)
+{ 
+    ws += 1;
+}
+draw_text(room_width/2, 310, "Wall Health: " + string(ws));
+
+//Wizard Health Score
+if(hs &lt; healthScore &amp;&amp; ws &gt;= wallScore &amp;&amp; as &gt;= aScore)
+{ 
+    hs += 1;
+}
+draw_text(room_width/2, 340, "Wizard Health: " + string(hs));
+
+//Total Score
+ts = mk + as + ws + hs + ps;
+draw_text(room_width/2, 410, "Total Score: " + string(ts));
 </string>
           </argument>
         </arguments>

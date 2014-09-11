@@ -25,7 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(choice_rm);
+            <string>//Reset the Current level
+globalvar curLevel;
+curLevel = 0;
+
+//Set a previous score variable and initialize it to zero
+globalvar prevTotalScore;
+prevTotalScore = 0;
+
+room_goto(choice_rm);
 </string>
           </argument>
         </arguments>

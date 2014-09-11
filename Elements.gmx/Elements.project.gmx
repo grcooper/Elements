@@ -6,7 +6,17 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\intruderstxt_spr</sprite>
+    <sprites name="Save">
+      <sprite>sprites\saveCont_spr</sprite>
+    </sprites>
+    <sprite>sprites\wall_spr</sprite>
+    <sprite>sprites\intComing_spr</sprite>
+    <sprites name="Pause">
+      <sprite>sprites\pause_spr</sprite>
+      <sprite>sprites\bmenu_spr</sprite>
+      <sprite>sprites\resume_spr</sprite>
+      <sprite>sprites\fade_spr</sprite>
+    </sprites>
     <sprites name="main menu">
       <sprite>sprites\continue_spr</sprite>
       <sprite>sprites\highscores_spr</sprite>
@@ -18,14 +28,21 @@
       <sprite>sprites\earthchoice_spr</sprite>
       <sprite>sprites\airchoice_spr</sprite>
     </sprites>
-    <sprite>sprites\spider_spr</sprite>
-    <sprite>sprites\wall_spr</sprite>
     <sprites name="hero">
       <sprite>sprites\hero_spr</sprite>
       <sprite>sprites\fire_spr</sprite>
       <sprite>sprites\water_spr</sprite>
       <sprite>sprites\air_spr</sprite>
       <sprite>sprites\earth_spr</sprite>
+    </sprites>
+    <sprites name="monsters">
+      <sprite>sprites\spider_spr</sprite>
+      <sprite>sprites\wizard_spr</sprite>
+      <sprite>sprites\boss_spr</sprite>
+    </sprites>
+    <sprites name="game Over">
+      <sprite>sprites\gameOver_spr</sprite>
+      <sprite>sprites\win_spr</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -37,11 +54,22 @@
   <fonts name="fonts">
     <font>fonts\score_fnt</font>
     <font>fonts\scoreshadow_fnt</font>
+    <font>fonts\title_fnt</font>
   </fonts>
   <objects name="objects">
-    <object>objects\intruders_obj</object>
+    <object>objects\enemy_obj</object>
+    <object>objects\wall_obj</object>
+    <object>objects\missile_obj</object>
+    <object>objects\hero_obj</object>
     <object>objects\spawn_obj</object>
     <object>objects\controller_obj</object>
+    <object>objects\intruders_obj</object>
+    <objects name="Pause">
+      <object>objects\pause_obj</object>
+      <object>objects\bmenu_obj</object>
+      <object>objects\resume_obj</object>
+      <object>objects\fade_obj</object>
+    </objects>
     <objects name="choice">
       <object>objects\airchoice_obj</object>
       <object>objects\earthchoice_obj</object>
@@ -54,10 +82,14 @@
       <object>objects\continue_obj</object>
       <object>objects\newgame_obj</object>
     </objects>
-    <object>objects\hero_obj</object>
-    <object>objects\spider_obj</object>
-    <object>objects\wall_obj</object>
-    <object>objects\missile_obj</object>
+    <objects name="GameOver">
+      <object>objects\gameOver_obj</object>
+    </objects>
+    <objects name="Save">
+      <object>objects\scoreCalc_obj</object>
+      <object>objects\saveCont_obj</object>
+      <object>objects\bsMenu_obj</object>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
@@ -67,9 +99,10 @@
     <room>rooms\choice_rm</room>
     <room>rooms\test_rm</room>
     <room>rooms\level1_rm</room>
+    <room>rooms\score_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41879.7757178356</constant>
+    <constant name="GM_build_date">41893.0664769907</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

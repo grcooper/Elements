@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vspeed = -20;
-
-if(element1 == "fire")
+            <string>if(element1 == "fire")
 {
     sprite_index = fire_spr;
 }
@@ -43,6 +41,43 @@ else
 {
     sprite_index = air_spr;
 }
+
+//Set these inside of the if statements above depending on element, damage and speed changes
+mDamage = 1;
+mSpeed = -20;
+
+//Temp variables to get the x and y direction of the mouse relative to the player (missile's starting position)
+var xTemp;
+var yTemp;
+
+xTemp = mouse_x - x;
+yTemp = mouse_y - y;
+
+//Get the speed in the x direction as a unit vector
+var xMUnitSpeed;
+
+//handle divide by zero case
+if (xTemp == 0)
+{
+    xMUnitSpeed = 0;
+}
+else
+{
+    xMUnitSpeed = 1 / (1 + abs(yTemp / xTemp));
+}
+//Get the speed in the y direction as a unit vector
+var yMUnitSpeed = 1 - xMUnitSpeed;
+
+if(xTemp &gt; 0)
+{
+    mhSpeed = -1 * xMUnitSpeed * mSpeed;
+}
+else
+{
+    mhSpeed = xMUnitSpeed *mSpeed;
+}
+mvSpeed = yMUnitSpeed * mSpeed;
+
 </string>
           </argument>
         </arguments>
@@ -65,10 +100,57 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(y &lt; -10)
+            <string>//stop missile when paused
+if(!paused)
+{
+    vspeed = mvSpeed;
+    hspeed = mhSpeed;
+}
+else
+{
+    vspeed = 0;
+    hspeed = 0;
+}
+
+//destroy missile out of bounds
+if(y &lt; -10)
 {
     instance_destroy();
 }
+
+if (gameOver)
+{
+    instance_destroy();
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="enemy_obj">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//remove health from instance
+other.eHealth -= mDamage;
+
+mHit += 1;
+//Destroy bullet and enemy instance, else just destroy bullet
+instance_destroy();
 </string>
           </argument>
         </arguments>

@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar reload;
-reload = 0;
+            <string>reload = 0;
+health = 100;
 </string>
           </argument>
         </arguments>
@@ -49,30 +49,44 @@ reload = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//move left
-if(keyboard_check(ord('A')) &amp;&amp; (x &gt; 48))
+            <string>if (gameOver = false)
 {
-    x -= 5;
+    if (startPaused == false)
+    {
+        if(paused == false)
+        {
+            //move left
+            if(keyboard_check(ord('A')) &amp;&amp; (x &gt; 48))
+            {
+                x -= 5;
+            }
+            
+            //move right
+            if(keyboard_check(ord('D')) &amp;&amp; (x &lt; room_width - 48))
+            {
+                x += 5;
+            }
+            
+            //Fire missiles
+            
+            //Reload timer
+            if(reload &gt; 0)
+            {
+                reload--;
+            }
+            
+            if((keyboard_check(ord('W')) || mouse_check_button(mb_left)) &amp;&amp; (reload == 0))
+            {
+                instance_create(x,y-16,missile_obj);
+                reload = 10;
+                mFired += 1;
+            }
+        }
+    }
 }
-
-//move right
-if(keyboard_check(ord('D')) &amp;&amp; (x &lt; room_width - 48))
+else
 {
-    x += 5;
-}
-
-//Fire missiles
-
-//Reload timer
-if(reload &gt; 0)
-{
-    reload--;
-}
-
-if(keyboard_check(ord('W')) &amp;&amp; (reload == 0))
-{
-    instance_create(x,y,missile_obj);
-    reload = 10;
+    instance_destroy();
 }
 </string>
           </argument>
