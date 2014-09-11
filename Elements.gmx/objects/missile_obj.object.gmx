@@ -52,21 +52,34 @@ var yTemp;
 
 xTemp = mouse_x - x;
 yTemp = mouse_y - y;
+//Magnitude is the length of the vector from the player to the mouse
+magnitude = sqrt(sqr(xTemp) + sqr(yTemp));
 
 //Get the speed in the x direction as a unit vector
 var xMUnitSpeed;
-
-//handle divide by zero case
-if (xTemp == 0)
+//Divide by zero case
+if(magnitude != 0)
 {
-    xMUnitSpeed = 0;
+    //get the unit speed by dividing by the magnitude
+    xMUnitSpeed = abs(xTemp / magnitude);
 }
 else
 {
-    xMUnitSpeed = 1 / (1 + abs(yTemp / xTemp));
+    xMUnitSpeed = 0;
+}
+
+//Same as for xMUnitSpeed
+var yMUnitSpeed;
+
+if (magnitude != 0)
+{
+    yMUnitSpeed = abs(yTemp / magnitude);
+}
+else
+{
+    xMUnitSpeed = 0;
 }
 //Get the speed in the y direction as a unit vector
-var yMUnitSpeed = 1 - xMUnitSpeed;
 
 if(xTemp &gt; 0)
 {
@@ -74,7 +87,7 @@ if(xTemp &gt; 0)
 }
 else
 {
-    mhSpeed = xMUnitSpeed *mSpeed;
+    mhSpeed = xMUnitSpeed * mSpeed;
 }
 mvSpeed = yMUnitSpeed * mSpeed;
 
