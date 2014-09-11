@@ -3,6 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles">
+    <datafile>
+      <name>save.ini</name>
+      <exists>-1</exists>
+      <size>99</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>save.ini</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -21,6 +40,7 @@
       <sprite>sprites\continue_spr</sprite>
       <sprite>sprites\highscores_spr</sprite>
       <sprite>sprites\newgame_spr</sprite>
+      <sprite>sprites\options_spr</sprite>
     </sprites>
     <sprites name="choice">
       <sprite>sprites\firechoice_spr</sprite>
@@ -46,6 +66,7 @@
       <sprite>sprites\gameOver_spr</sprite>
       <sprite>sprites\win_spr</sprite>
     </sprites>
+    <sprite>sprites\clearSave_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\test_bg</background>
@@ -84,6 +105,7 @@
       <object>objects\highscores_obj</object>
       <object>objects\continue_obj</object>
       <object>objects\newgame_obj</object>
+      <object>objects\options_obj</object>
     </objects>
     <objects name="GameOver">
       <object>objects\gameOver_obj</object>
@@ -92,7 +114,11 @@
       <object>objects\scoreCalc_obj</object>
       <object>objects\saveCont_obj</object>
       <object>objects\bsMenu_obj</object>
+      <object>objects\saveController_obj</object>
+      <object>objects\loadController_obj</object>
     </objects>
+    <object>objects\highScoreController_obj</object>
+    <object>objects\clearSave_obj</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
@@ -103,9 +129,11 @@
     <room>rooms\test_rm</room>
     <room>rooms\level1_rm</room>
     <room>rooms\score_rm</room>
+    <room>rooms\highScores_rm</room>
+    <room>rooms\options_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41893.6671454398</constant>
+    <constant name="GM_build_date">41893.9936430903</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>
