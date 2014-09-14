@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(element1 == "fire")
+            <string>//Change the missile's attributes based on the element selected
+if(element1 == "fire")
 {
     sprite_index = fire_spr;
     mStartReload = 10;
@@ -166,12 +167,34 @@ if (gameOver)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//remove health from instance
-other.eHealth -= mDamage;
+            <string>//Set the different abilities to act on the enemies
+if(element1 == "fire")
+{
+    other.mPower = "burn";
+}
+else if(element1 == "water")
+{
+    other.mPower = "splash";
+}
+else if(element1 == "earth")
+{
+    other.mPower = "pierce";
+    other.mCurInst = instance_position(x,y,missile_obj);
+}
+else if(element1 == "air")
+{
+    other.mPower = "push";
+}
 
+//Add up hit for accuracy purposes
 mHit += 1;
-//Destroy bullet and enemy instance, else just destroy bullet
-instance_destroy();
+
+//Destroy bullet on hit (if earth this will have to change to go thorugh)
+if (other.mPower != "pierce")
+{
+    instance_destroy();
+}
+
 </string>
           </argument>
         </arguments>

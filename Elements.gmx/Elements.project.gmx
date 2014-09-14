@@ -25,11 +25,12 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprites name="Save">
-      <sprite>sprites\saveCont_spr</sprite>
-    </sprites>
     <sprite>sprites\wall_spr</sprite>
     <sprite>sprites\intComing_spr</sprite>
+    <sprites name="Save">
+      <sprite>sprites\saveCont_spr</sprite>
+      <sprite>sprites\clearSave_spr</sprite>
+    </sprites>
     <sprites name="Pause">
       <sprite>sprites\pause_spr</sprite>
       <sprite>sprites\bmenu_spr</sprite>
@@ -61,12 +62,12 @@
       <sprite>sprites\boss_spr</sprite>
       <sprite>sprites\bat_spr</sprite>
       <sprite>sprites\monsterMissile_spr</sprite>
+      <sprite>sprites\onFire_spr</sprite>
     </sprites>
     <sprites name="game Over">
       <sprite>sprites\gameOver_spr</sprite>
       <sprite>sprites\win_spr</sprite>
     </sprites>
-    <sprite>sprites\clearSave_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\test_bg</background>
@@ -84,6 +85,7 @@
     <object>objects\monsterMissile_obj</object>
     <object>objects\wall_obj</object>
     <object>objects\missile_obj</object>
+    <object>objects\splash_obj</object>
     <object>objects\hero_obj</object>
     <object>objects\spawn_obj</object>
     <object>objects\controller_obj</object>
@@ -116,9 +118,9 @@
       <object>objects\bsMenu_obj</object>
       <object>objects\saveController_obj</object>
       <object>objects\loadController_obj</object>
+      <object>objects\clearSave_obj</object>
+      <object>objects\highScoreController_obj</object>
     </objects>
-    <object>objects\highScoreController_obj</object>
-    <object>objects\clearSave_obj</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
@@ -133,7 +135,7 @@
     <room>rooms\options_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41893.9936430903</constant>
+    <constant name="GM_build_date">41896.016595463</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

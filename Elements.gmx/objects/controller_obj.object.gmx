@@ -66,6 +66,9 @@ eDead = 0;
 //Enemies dead goal
 globalvar eGoal;
 eGoal = 5 + (5 * curLevel);
+
+//Splash Global
+globalvar splashLeft;
 </string>
           </argument>
         </arguments>
@@ -88,10 +91,13 @@ eGoal = 5 + (5 * curLevel);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!gameOver)
+            <string>//Check if the game is over, otherwsie continue
+if (!gameOver)
 {
+    //also check for pause, indented for clarity
     if (paused == false)
     {
+        //when escape is pressed pause the game
         if (keyboard_check_pressed(vk_escape))
         {
             paused = true;
@@ -101,6 +107,7 @@ eGoal = 5 + (5 * curLevel);
             instance_create(0,0, fade_obj);
         }
     }
+    //if already paused, unpause when escape is pressed
     else if (keyboard_check_pressed(vk_escape))
     {
         paused = false;

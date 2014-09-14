@@ -33,6 +33,10 @@ boss = false;
 eFire = false;
 eStartReload = 20;
 eReload = eStartReload;
+//Depending on the type of bullet to come in contact with the enemy, a special action occurs
+mPower = "";
+mBurnTimer = 1;
+mCurInst = instance_nearest(x,y, missile_obj);
 
 //change stats depending on spawn type
 if (spawnType = "spider")
@@ -74,6 +78,7 @@ else
     instance_destroy();
 }
 
+//Melee for when the enemies hit the wall
 eMeleeReloadStart = 30;
 eMeleeReload = eMeleeReloadStart;
 </string>
@@ -98,10 +103,12 @@ eMeleeReload = eMeleeReloadStart;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (eHealth &lt; 1)
+            <string>//Destroy when the health is less than 1
+if (eHealth &lt; 1)
 {
     score += points;
     eDead += 1;
+    //Spawn boss if all the required enemies are destroyed
     if(boss == true)
     {
         winCond = true;
@@ -109,6 +116,7 @@ eMeleeReload = eMeleeReloadStart;
     instance_destroy();
 }
 
+//Stop the enemies at the wall and damage the wall
 if (instance_position(x, y + 16, wall_obj))
 {
     vspeed = 0;
@@ -129,6 +137,7 @@ else
     vspeed = 0;
 }
 
+//Allow for firing missiles if the enemy has that ability
 if (eFire)
 {
     if(eReload &lt;= 0)
@@ -142,10 +151,84 @@ if (eFire)
     }   
 }
 
+////////////////////////////////////
+//Special Actions
+///////////////////////////////////
+
+//Set on fire, damage over time
+if (mPower == "burn")
+{
+    sprite_index = onFire_spr;
+    if((mBurnTimer % 30) == 0)
+    {
+        eHealth -= 1;
+    }
+    if (mBurnTimer &lt;= 60)
+    {
+        mBurnTimer += 1;
+    }
+    else
+    {
+        mPower = "";
+    }
+}
+//Create two more short range missiles on impact
+else if (mPower == "splash")
+{
+    var xSpawn;
+    if(boss == true)
+    {
+        xSpawn = 36;
+    }
+    else
+    {
+        xSpawn = 20;
+    }
+    splashLeft = true;
+    instance_create(x - xSpawn,y,splash_obj);
+    splashLeft = false;
+    instance_create(x + xSpawn, y, splash_obj);
+    mPower = "";
+}
+//Move backward on impact
+else if (mPower = "push")
+{
+    y -= 10;
+    mPower = "";   
+}
+
+//Destroy on game over so no enemies damage the wall etc.
 if(gameOver)
 {
     instance_destroy();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="missile_obj">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//remove health from the enemy only if it has not happened before
+if (instance_nearest(x,y, missile_obj) != mCurInst)
+{
+    eHealth -= other.mDamage;   
+}   
 </string>
           </argument>
         </arguments>
