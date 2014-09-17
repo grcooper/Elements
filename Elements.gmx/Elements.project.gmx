@@ -48,6 +48,7 @@
       <sprite>sprites\waterchoice_spr</sprite>
       <sprite>sprites\earthchoice_spr</sprite>
       <sprite>sprites\airchoice_spr</sprite>
+      <sprite>sprites\secondE_spr</sprite>
     </sprites>
     <sprites name="hero">
       <sprite>sprites\hero_spr</sprite>
@@ -102,6 +103,7 @@
       <object>objects\waterchoice_obj</object>
       <object>objects\firechoice_obj</object>
       <object>objects\choice_obj</object>
+      <object>objects\secondE_obj</object>
     </objects>
     <objects name="main menu">
       <object>objects\highscores_obj</object>
@@ -128,6 +130,7 @@
   <rooms name="rooms">
     <room>rooms\title_rm</room>
     <room>rooms\choice_rm</room>
+    <room>rooms\choice2_rm</room>
     <room>rooms\test_rm</room>
     <room>rooms\level1_rm</room>
     <room>rooms\score_rm</room>
@@ -135,7 +138,7 @@
     <room>rooms\options_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41896.016595463</constant>
+    <constant name="GM_build_date">41899.611214294</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

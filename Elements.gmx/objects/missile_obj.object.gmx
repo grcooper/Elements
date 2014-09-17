@@ -168,7 +168,7 @@ if (gameOver)
           <argument>
             <kind>1</kind>
             <string>//Set the different abilities to act on the enemies
-if(element1 == "fire")
+if (element1 == "fire")
 {
     other.mPower = "burn";
 }
@@ -186,14 +186,33 @@ else if(element1 == "air")
     other.mPower = "push";
 }
 
+if (element2 == "fire")
+{
+    other.mPower2 = "burn";
+}
+else if(element2 == "water")
+{
+    other.mPower2 = "splash";
+}
+else if(element2 == "earth")
+{
+    other.mPower2 = "pierce";
+    other.mCurInst = instance_position(x,y,missile_obj);
+}
+else if(element2 == "air")
+{
+    other.mPower2 = "push";
+}
+
 //Add up hit for accuracy purposes
 mHit += 1;
 
 //Destroy bullet on hit (if earth this will have to change to go thorugh)
-if (other.mPower != "pierce")
+if (!(other.mPower == "pierce" || other.mPower2 == "pierce"))
 {
     instance_destroy();
 }
+
 
 </string>
           </argument>

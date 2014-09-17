@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>globalvar element1;
+globalvar element2;
 globalvar curLevel;
 globalvar prevTotalScore;
 globalvar totalScore;
@@ -34,6 +35,7 @@ totalScore = 0;
 ini_open('save.ini');
 
 element1 = ini_read_string('curGame', 'element1', "");
+element2 = ini_read_string('curGame', 'element2', "");
 curLevel = ini_read_real('curGame', 'level', 0);
 prevTotalScore = ini_read_real('curGame', 'score', 0);
 

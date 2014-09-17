@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(title_rm);
+            <string>curLevel = 0;
+room_goto(title_rm);
 </string>
           </argument>
         </arguments>

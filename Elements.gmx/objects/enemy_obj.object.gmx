@@ -35,8 +35,11 @@ eStartReload = 20;
 eReload = eStartReload;
 //Depending on the type of bullet to come in contact with the enemy, a special action occurs
 mPower = "";
+mPower2 = "";
 mBurnTimer = 1;
 mCurInst = instance_nearest(x,y, missile_obj);
+//Particle Variables
+partFlame = -1;
 
 //change stats depending on spawn type
 if (spawnType = "spider")
@@ -155,10 +158,12 @@ if (eFire)
 //Special Actions
 ///////////////////////////////////
 
+
+//using just if, to count for two elements
+
 //Set on fire, damage over time
 if (mPower == "burn")
 {
-    sprite_index = onFire_spr;
     if((mBurnTimer % 30) == 0)
     {
         eHealth -= 1;
@@ -173,7 +178,7 @@ if (mPower == "burn")
     }
 }
 //Create two more short range missiles on impact
-else if (mPower == "splash")
+if (mPower == "splash")
 {
     var xSpawn;
     if(boss == true)
@@ -191,7 +196,7 @@ else if (mPower == "splash")
     mPower = "";
 }
 //Move backward on impact
-else if (mPower = "push")
+if (mPower = "push")
 {
     y -= 10;
     mPower = "";   
@@ -228,7 +233,8 @@ if(gameOver)
 if (instance_nearest(x,y, missile_obj) != mCurInst)
 {
     eHealth -= other.mDamage;   
-}   
+}
+
 </string>
           </argument>
         </arguments>

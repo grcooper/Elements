@@ -25,8 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(level1_rm);
-element1 = "water";
+            <string>if (element1 == "air" || element1 == "fire" ||element1 == "water" || element1 == "earth")
+{
+    if (element1 != "water")
+    {
+        element2 = "water";
+        room_goto(level1_rm);   
+    }
+}
+else
+{
+    element1 = "water";
+    room_goto(level1_rm);
+}
+
+
 </string>
           </argument>
         </arguments>

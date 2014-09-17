@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Spawn Continue Button if we won
+            <string>//Increase the current level on score screen
+curLevel += 1;
+
+//Spawn Continue Button if we won
 if (winCond)
 {
     instance_create(room_width/2, 500, saveCont_obj);
@@ -81,9 +84,6 @@ as = 0;
 ws = 0;
 hs = 0;
 ts = 0;
-
-//Increase the current level on score screen
-curLevel += 1;
 
 //Spawn the save controller
 instance_create(x,y, saveController_obj);

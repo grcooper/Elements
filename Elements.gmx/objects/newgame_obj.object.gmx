@@ -27,14 +27,19 @@
             <kind>1</kind>
             <string>//Reset the Current level
 curLevel = 0;
+element1 = "";
+element2 = "";
 
 //Set a previous score variable and initialize it to zero
 prevTotalScore = 0;
+
 
 ini_open('save.ini');
 
 ini_write_real('curGame', 'level', 0);
 ini_write_real('curGame', 'score', 0);
+ini_write_string('curGame', 'element1', "");
+ini_write_string('curGame', 'element2', "");
 
 room_goto(choice_rm);
 </string>

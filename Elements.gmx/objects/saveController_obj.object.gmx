@@ -28,12 +28,14 @@
             <string>ini_open("save.ini");
 
 ini_write_string('curGame', 'element1', element1);
+ini_write_string('curGame', 'element2', element2);
 ini_write_real('curGame', 'level', curLevel);
 ini_write_real('curGame', 'score', totalScore);
 
 //If it was game over handle highscore saves
 if (winCond == false)
 {
+    ini_write_real('curGame', 'level', 0);
     //variables to hold highscores to compare the current totalscore
     var one, two, three, four, five;
     
