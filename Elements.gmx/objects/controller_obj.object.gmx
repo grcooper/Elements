@@ -127,6 +127,7 @@ if (!gameOver)
         //when escape is pressed pause the game
         if (keyboard_check_pressed(vk_escape))
         {
+            instance_create(x,y, clickTimer_obj);
             paused = true;
             instance_create(room_width/2, 200, pause_obj);
             instance_create(room_width/2, 300, resume_obj);
@@ -189,15 +190,15 @@ if (winCond)
     draw_healthbar(room_width-32,0,room_width,room_height, wallHealth,c_black,c_green,c_red,3,true,true);
     
     //Shadow of score, may need to change
-    draw_set_color(c_black);
-    draw_set_font(scoreshadow_fnt);
+    draw_set_color(make_color_rgb(6,38,53));
+    draw_set_font(score_fnt);
     draw_set_halign(fa_center);
-    draw_text(room_width/2,room_height - 32,string(score));
+    draw_text(room_width/2 - 3,room_height - 22,string(score));
     
     //Score text
     draw_set_color(c_white);
     draw_set_font(score_fnt);
-    draw_text(room_width/2,room_height - 32,string(score));
+    draw_text(room_width/2,room_height - 24,string(score));
 }
 
 

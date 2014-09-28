@@ -74,12 +74,18 @@
     <background>background\test_bg</background>
     <background>background\title_bg</background>
     <background>background\selection_bg</background>
+    <background>background\selection2_bg</background>
+    <background>background\menu_bg</background>
   </backgrounds>
   <paths name="paths"/>
   <fonts name="fonts">
     <font>fonts\score_fnt</font>
     <font>fonts\scoreshadow_fnt</font>
     <font>fonts\title_fnt</font>
+    <font>fonts\MoolTitle_fnt</font>
+    <font>fonts\MoolReg_fnt</font>
+    <font>fonts\font5</font>
+    <font>fonts\scoreCount_fnt</font>
   </fonts>
   <objects name="objects">
     <object>objects\enemy_obj</object>
@@ -103,7 +109,6 @@
       <object>objects\waterchoice_obj</object>
       <object>objects\firechoice_obj</object>
       <object>objects\choice_obj</object>
-      <object>objects\secondE_obj</object>
     </objects>
     <objects name="main menu">
       <object>objects\highscores_obj</object>
@@ -121,8 +126,12 @@
       <object>objects\saveController_obj</object>
       <object>objects\loadController_obj</object>
       <object>objects\clearSave_obj</object>
+    </objects>
+    <objects name="Drawing">
+      <object>objects\optionDraw_obj</object>
       <object>objects\highScoreController_obj</object>
     </objects>
+    <object>objects\clickTimer_obj</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
@@ -138,7 +147,7 @@
     <room>rooms\options_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41899.611214294</constant>
+    <constant name="GM_build_date">41910.0039906018</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

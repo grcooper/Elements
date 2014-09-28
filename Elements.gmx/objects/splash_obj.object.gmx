@@ -30,11 +30,14 @@ vspeed = -8;
 if(splashLeft == true)
 {
     hspeed = vspeed;
+    image_angle = 45;
 }
 else
 {
     hspeed = -1 * vspeed;
+    image_angle = 135;
 }
+
 </string>
           </argument>
         </arguments>

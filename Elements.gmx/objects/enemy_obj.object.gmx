@@ -162,7 +162,7 @@ if (eFire)
 //using just if, to count for two elements
 
 //Set on fire, damage over time
-if (mPower == "burn")
+if (mPower == "burn" || mPower2 == "burn")
 {
     if((mBurnTimer % 30) == 0)
     {
@@ -174,11 +174,18 @@ if (mPower == "burn")
     }
     else
     {
-        mPower = "";
+        if (mPower == "burn")
+        {
+            mPower = "";
+        }
+        else
+        {
+            mPower2 = "";
+        }
     }
 }
 //Create two more short range missiles on impact
-if (mPower == "splash")
+if (mPower == "splash" || mPower2 = "splash")
 {
     var xSpawn;
     if(boss == true)
@@ -189,17 +196,35 @@ if (mPower == "splash")
     {
         xSpawn = 20;
     }
-    splashLeft = true;
-    instance_create(x - xSpawn,y,splash_obj);
-    splashLeft = false;
-    instance_create(x + xSpawn, y, splash_obj);
-    mPower = "";
+    if (instance_nearest(x,y, missile_obj) != mCurInst)
+    {
+        splashLeft = true;
+        instance_create(x - xSpawn,y,splash_obj);
+        splashLeft = false;
+        instance_create(x + xSpawn, y, splash_obj);
+    }
+    
+    if (mPower == "splash")
+    {
+        mPower = "";
+    }
+    else
+    {
+        mPower2 = "";
+    }
 }
 //Move backward on impact
-if (mPower = "push")
+if (mPower = "push" || mPower2 = "push")
 {
     y -= 10;
-    mPower = "";   
+    if (mPower == "push")
+    {
+        mPower = "";
+    }
+    else
+    {
+        mPower2 = "";
+    }  
 }
 
 //Destroy on game over so no enemies damage the wall etc.
@@ -232,7 +257,7 @@ if(gameOver)
             <string>//remove health from the enemy only if it has not happened before
 if (instance_nearest(x,y, missile_obj) != mCurInst)
 {
-    eHealth -= other.mDamage;   
+    eHealth -= other.mDamage;
 }
 
 </string>

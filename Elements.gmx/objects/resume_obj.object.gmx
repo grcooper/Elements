@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="3" enumb="0">
@@ -53,7 +53,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>paused = false;
+            <string>if (clickTimer &lt; 0)
+{
+    paused = false;
+}
 </string>
           </argument>
         </arguments>

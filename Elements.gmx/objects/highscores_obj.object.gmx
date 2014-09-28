@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(highScores_rm);
+            <string>if (clickTimer &lt; 0)
+{
+    room_goto(highScores_rm);
+}
 </string>
           </argument>
         </arguments>

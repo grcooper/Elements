@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="3" enumb="0">
@@ -51,7 +51,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(title_rm);
+            <string>if (clickTimer &lt; 0)
+{
+    room_goto(title_rm);
+}
 </string>
           </argument>
         </arguments>

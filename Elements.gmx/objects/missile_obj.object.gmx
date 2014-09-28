@@ -100,6 +100,8 @@ else
 }
 mvSpeed = yMUnitSpeed * mSpeed;
 
+//Angle of the sprite
+image_angle = point_direction(x,y,mouse_x,mouse_y) - 90;
 </string>
           </argument>
         </arguments>
