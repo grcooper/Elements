@@ -63,7 +63,6 @@
       <sprite>sprites\boss_spr</sprite>
       <sprite>sprites\bat_spr</sprite>
       <sprite>sprites\monsterMissile_spr</sprite>
-      <sprite>sprites\onFire_spr</sprite>
     </sprites>
     <sprites name="game Over">
       <sprite>sprites\gameOver_spr</sprite>
@@ -97,6 +96,7 @@
     <object>objects\spawn_obj</object>
     <object>objects\controller_obj</object>
     <object>objects\intruders_obj</object>
+    <object>objects\clickTimer_obj</object>
     <objects name="Pause">
       <object>objects\pause_obj</object>
       <object>objects\bmenu_obj</object>
@@ -131,7 +131,11 @@
       <object>objects\optionDraw_obj</object>
       <object>objects\highScoreController_obj</object>
     </objects>
-    <object>objects\clickTimer_obj</object>
+    <objects name="Particles">
+      <object>objects\obj_particles</object>
+      <object>objects\onHitPart_obj</object>
+      <object>objects\burnPart_obj</object>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
@@ -140,14 +144,14 @@
     <room>rooms\title_rm</room>
     <room>rooms\choice_rm</room>
     <room>rooms\choice2_rm</room>
-    <room>rooms\test_rm</room>
     <room>rooms\level1_rm</room>
     <room>rooms\score_rm</room>
+    <room>rooms\test_rm</room>
     <room>rooms\highScores_rm</room>
     <room>rooms\options_rm</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41910.0039906018</constant>
+    <constant name="GM_build_date">41917.9208293403</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

@@ -169,9 +169,10 @@ if (gameOver)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Set the different abilities to act on the enemies
+            <string>instance_create(x,y,onHitPart_obj);
+//Set the different abilities to act on the enemies
 if (element1 == "fire")
-{
+{    
     other.mPower = "burn";
 }
 else if(element1 == "water")

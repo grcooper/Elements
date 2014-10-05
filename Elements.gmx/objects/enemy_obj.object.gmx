@@ -33,13 +33,15 @@ boss = false;
 eFire = false;
 eStartReload = 20;
 eReload = eStartReload;
+eMdamage = 0;
 //Depending on the type of bullet to come in contact with the enemy, a special action occurs
 mPower = "";
 mPower2 = "";
 mBurnTimer = 1;
 mCurInst = instance_nearest(x,y, missile_obj);
-//Particle Variables
-partFlame = -1;
+//Space for the enemies to run into the wall
+walSpace = 0;
+
 
 //change stats depending on spawn type
 if (spawnType = "spider")
@@ -49,6 +51,8 @@ if (spawnType = "spider")
     eSpeed = 5;
     points = 10 + (curLevel * 2);
     eFire = false;
+    eMDamage = 5;
+    wallSpace = 16;
 }
 else if (spawnType = "wizard")
 {
@@ -57,6 +61,8 @@ else if (spawnType = "wizard")
     eSpeed = 3;
     points = 15 + (curLevel * 2);
     eFire = false;
+    eMDamage = 5;
+    wallSpace = 16;
 }
 else if (spawnType = "bat")
 {
@@ -65,6 +71,8 @@ else if (spawnType = "bat")
     eSpeed = 5;
     points = 15 + (curLevel * 2);
     eFire = true;
+    eMDamage = 5;
+    wallSpace = 16;
 }
 else if (spawnType = "boss")
 {
@@ -74,6 +82,8 @@ else if (spawnType = "boss")
     eSpeed = 3;
     boss = true;
     eFire = true;
+    eMDamage = 15;
+    wallSpace = 32;
 }
 else
 {
@@ -84,6 +94,7 @@ else
 //Melee for when the enemies hit the wall
 eMeleeReloadStart = 30;
 eMeleeReload = eMeleeReloadStart;
+
 </string>
           </argument>
         </arguments>
@@ -118,26 +129,24 @@ if (eHealth &lt; 1)
     }
     instance_destroy();
 }
-
-//Stop the enemies at the wall and damage the wall
-if (instance_position(x, y + 16, wall_obj))
+if(instance_position(x,y + wallSpace,wall_obj))
 {
     vspeed = 0;
     eFire = false;
     eMeleeReload --;
-    if (eMeleeReload = 0)
+    if(eMeleeReload == 0)
     {
-        wallHealth -= 10;
+        wallHealth -= eMDamage;
         eMeleeReload = eMeleeReloadStart;
-    } 
+    }
 }
-else if (!paused)
+else if (paused)
 {
-    vspeed = eSpeed;
+    vspeed = 0;
 }
 else
 {
-    vspeed = 0;
+    vspeed = eSpeed;
 }
 
 //Allow for firing missiles if the enemy has that ability
@@ -163,9 +172,11 @@ if (eFire)
 
 //Set on fire, damage over time
 if (mPower == "burn" || mPower2 == "burn")
-{
+{   
+    
     if((mBurnTimer % 30) == 0)
     {
+        instance_create(x,y,burnPart_obj);
         eHealth -= 1;
     }
     if (mBurnTimer &lt;= 60)
@@ -177,10 +188,12 @@ if (mPower == "burn" || mPower2 == "burn")
         if (mPower == "burn")
         {
             mPower = "";
+            mBurnTimer = 1;
         }
         else
         {
             mPower2 = "";
+            mBurnTimer = 1;
         }
     }
 }
@@ -216,7 +229,10 @@ if (mPower == "splash" || mPower2 = "splash")
 //Move backward on impact
 if (mPower = "push" || mPower2 = "push")
 {
-    y -= 10;
+    if (instance_nearest(x,y, missile_obj) != mCurInst)
+    {
+        y -= 10;
+    }
     if (mPower == "push")
     {
         mPower = "";
@@ -259,6 +275,7 @@ if (instance_nearest(x,y, missile_obj) != mCurInst)
 {
     eHealth -= other.mDamage;
 }
+
 
 </string>
           </argument>
