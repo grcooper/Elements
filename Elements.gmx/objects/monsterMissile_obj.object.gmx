@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vspeed = 20;
+            <string>vspeed = global.eMissVSpeed;
+hspeed = global.eMissHSpeed;
 </string>
           </argument>
         </arguments>

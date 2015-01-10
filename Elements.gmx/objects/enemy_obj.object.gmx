@@ -39,6 +39,7 @@ mPower = "";
 mPower2 = "";
 mBurnTimer = 1;
 mCurInst = instance_nearest(x,y, missile_obj);
+pushed = false;
 //Space for the enemies to run into the wall
 walSpace = 0;
 
@@ -47,7 +48,7 @@ walSpace = 0;
 if (spawnType = "spider")
 {
     sprite_index = spider_spr;
-    eHealth = round(1 + (curLevel/5));
+    eHealth = round(2 + (curLevel/5));
     eSpeed = 5;
     points = 10 + (curLevel * 2);
     eFire = false;
@@ -57,7 +58,7 @@ if (spawnType = "spider")
 else if (spawnType = "wizard")
 {
     sprite_index = wizard_spr;
-    eHealth = round(2 + (curLevel/5));
+    eHealth = round(3 + (curLevel/5));
     eSpeed = 3;
     points = 15 + (curLevel * 2);
     eFire = false;
@@ -67,23 +68,25 @@ else if (spawnType = "wizard")
 else if (spawnType = "bat")
 {
     sprite_index = bat_spr;
-    eHealth = 1;
+    eHealth = round(1 + (curLevel / 5));
     eSpeed = 5;
     points = 15 + (curLevel * 2);
     eFire = true;
     eMDamage = 5;
     wallSpace = 16;
+    eStartReload = 20;
 }
 else if (spawnType = "boss")
 {
     sprite_index = boss_spr;
-    eHealth = round(5 + (curLevel/5));
+    eHealth = round(10 + (curLevel/2));
     points = 30 + (curLevel * 15);
     eSpeed = 3;
     boss = true;
     eFire = true;
     eMDamage = 15;
     wallSpace = 32;
+    eStartReload = min(5, 20 - curLevel);
 }
 else
 {
@@ -92,7 +95,7 @@ else
 }
 
 //Melee for when the enemies hit the wall
-eMeleeReloadStart = 30;
+eMeleeReloadStart = 20;
 eMeleeReload = eMeleeReloadStart;
 
 </string>
@@ -154,6 +157,20 @@ if (eFire)
 {
     if(eReload &lt;= 0)
     {
+        globalvar eMissVSpeed;
+        globalvar eMissHSpeed;
+        if(boss)
+        {
+            eMissVSpeed = 10;
+            eMissHSpeed = sin(y) * 5;
+        }
+        else 
+        {
+            eMissVSpeed = 20;
+            eMissHSpeed = 0;
+        }
+        
+        
         instance_create(x,y,monsterMissile_obj);
         eReload = eStartReload;
     }
@@ -203,11 +220,11 @@ if (mPower == "splash" || mPower2 = "splash")
     var xSpawn;
     if(boss == true)
     {
-        xSpawn = 36;
+        xSpawn = 40;
     }
     else
     {
-        xSpawn = 20;
+        xSpawn = 24;
     }
     if (instance_nearest(x,y, missile_obj) != mCurInst)
     {
@@ -229,18 +246,21 @@ if (mPower == "splash" || mPower2 = "splash")
 //Move backward on impact
 if (mPower = "push" || mPower2 = "push")
 {
-    if (instance_nearest(x,y, missile_obj) != mCurInst)
+    if ((instance_nearest(x,y, missile_obj) != mCurInst) || !pushed)
     {
         y -= 10;
+        pushed = true;
     }
     if (mPower == "push")
     {
         mPower = "";
+        pushed = false;
     }
     else
     {
         mPower2 = "";
-    }  
+        pushed = false;
+    }
 }
 
 //Destroy on game over so no enemies damage the wall etc.

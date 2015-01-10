@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spawnReloadStart = max((50 - (curLevel * 2)), 15);
+            <string>spawnReloadStart = max((50 - (curLevel * 3)), 10);
 
 spawnReload = spawnReloadStart;
 globalvar spawnType;
